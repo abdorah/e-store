@@ -1,19 +1,21 @@
 package com.eccom.store.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Owner {
+public class Owner implements Serializable {
     
     @Id
     private Long ownerId;
 
     private String firstName, lastName, userName, email, password;
 
+    @OneToMany
     private Set<Item> itemsToPost, itemsAvailable, itemsReturned; 
 
     public Long getOwnerId() {

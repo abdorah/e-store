@@ -1,19 +1,21 @@
 package com.eccom.store.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Borrower {
+public class Borrower implements Serializable {
     
     @Id
     private Long borrowerId;
 
     private String firstName, lastName, userName, email, password;
 
+    @OneToMany
     private Set<Item> itemsBorrowed, itemsReturned;
 
     public Long getBorrowerId() {

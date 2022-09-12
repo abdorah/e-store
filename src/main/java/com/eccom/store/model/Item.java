@@ -1,11 +1,12 @@
 package com.eccom.store.model;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-public class Item {
+public class Item implements Serializable {
     
     @Id
     private Long itemId;

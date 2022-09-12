@@ -1,0 +1,3 @@
+2022-09-12 23:14:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "OWNER" not found (this database is empty); SQL statement:
+select owner0_.owner_id as owner_id1_4_, owner0_.email as email2_4_, owner0_.first_name as first_na3_4_, owner0_.last_name as last_nam4_4_, owner0_.password as password5_4_, owner0_.user_name as user_nam6_4_ from owner owner0_ [42104-214]

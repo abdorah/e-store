@@ -1,15 +1,19 @@
 version: '3.9'
 services:
-    # e-store:
-    #     container_name: e-store
-    #     image: postgres:14.2
-    #     environment:
-    #         POSTGRES_USER: postgres
-    #         POSTGRES_PASSWORD: password
-    #         POSTGRES_DB: e-store
-    #     ports:
-    #         - 5432:5432
-    builder:
+  # e-store:
+  #   image: mysql:5.7
+  #   container_name: e-store
+  #   restart: always
+  #   environment:
+  #     MYSQL_DATABASE: 'storedb'
+  #     MYSQL_USER: 'user'
+  #     MYSQL_PASSWORD: 'password'
+  #     MYSQL_ROOT_PASSWORD: 'password'
+  #   ports:
+  #     - '3306:3306'
+  #   expose:
+  #     - '3306'
+  builder:
         container_name: builder
         image: maven:3.6.0-jdk-8-slim
         volumes:
@@ -20,19 +24,19 @@ services:
             - install
             - clean
             - package
-        depends_on:
-            - "e-store"
-    backend:
+        # depends_on:
+        #     - "e-store"
+  backend:
         container_name: backend
         restart: on-failure
-        image: openjdk:1.8
+        image: openjdk:8
         volumes:
-            - ./target/store-0.0.1-SNAPSHOT.jar:/home/app/backend.jar
+            - .:/home/app
         working_dir: /home/app
         entrypoint: java
-        command: -jar backend.jar
+        command: -jar store-0.0.1-SNAPSHOT.jar
         ports:
-            - 8001:8001
+            - 8080:8001
         depends_on:
             # - "e-store"
             - "builder"
