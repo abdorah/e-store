@@ -32,11 +32,11 @@ services:
         image: openjdk:8
         volumes:
             - .:/home/app
-        working_dir: /home/app
+        working_dir: /home/app/target
         entrypoint: java
         command: -jar store-0.0.1-SNAPSHOT.jar
         ports:
-            - 8080:8001
+            - 8080:8080
         depends_on:
             # - "e-store"
             - "builder"
