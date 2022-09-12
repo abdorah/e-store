@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+    # e-store:
+    #     container_name: e-store
+    #     image: postgres:14.2
+    #     environment:
+    #         POSTGRES_USER: postgres
+    #         POSTGRES_PASSWORD: password
+    #         POSTGRES_DB: e-store
+    #     ports:
+    #         - 5432:5432
+    builder:
+        container_name: builder
+        image: maven:3.6.0-jdk-8-slim
+        volumes:
+            - .:/home/app
+        working_dir: /home/app
+        entrypoint: mvn
+        command: 
+            - install
+            - clean
+            - package
+        depends_on:
+            - "e-store"
+    backend:
+        container_name: backend
+        restart: on-failure
+        image: openjdk:1.8
+        volumes:
+            - ./target/store-0.0.1-SNAPSHOT.jar:/home/app/backend.jar
+        working_dir: /home/app
+        entrypoint: java
+        command: -jar backend.jar
+        ports:
+            - 8001:8001
+        depends_on:
+            # - "e-store"
+            - "builder"
