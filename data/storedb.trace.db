@@ -1,3 +1,15 @@
 2022-09-12 23:14:58 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "OWNER" not found (this database is empty); SQL statement:
 select owner0_.owner_id as owner_id1_4_, owner0_.email as email2_4_, owner0_.first_name as first_na3_4_, owner0_.last_name as last_nam4_4_, owner0_.password as password5_4_, owner0_.user_name as user_nam6_4_ from owner owner0_ [42104-214]
+2022-09-13 05:42:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BORROWER" not found (this database is empty); SQL statement:
+select borrower0_.borrower_id as borrower1_0_, borrower0_.email as email2_0_, borrower0_.first_name as first_na3_0_, borrower0_.last_name as last_nam4_0_, borrower0_.password as password5_0_, borrower0_.roles as roles6_0_, borrower0_.user_name as user_nam7_0_ from borrower borrower0_ [42104-214]
+2022-09-13 05:42:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BORROWER" not found (this database is empty); SQL statement:
+select borrower0_.borrower_id as borrower1_0_, borrower0_.email as email2_0_, borrower0_.first_name as first_na3_0_, borrower0_.last_name as last_nam4_0_, borrower0_.password as password5_0_, borrower0_.roles as roles6_0_, borrower0_.user_name as user_nam7_0_ from borrower borrower0_ [42104-214]
+2022-09-13 05:43:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+select item0_.item_id as item_id1_3_, item0_.availabality as availaba2_3_, item0_.description as descript3_3_, item0_.photo_url as photo_ur4_3_ from item item0_ [42104-214]
+2022-09-13 05:43:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+select item0_.item_id as item_id1_3_, item0_.availabality as availaba2_3_, item0_.description as descript3_3_, item0_.photo_url as photo_ur4_3_ from item item0_ [42104-214]
