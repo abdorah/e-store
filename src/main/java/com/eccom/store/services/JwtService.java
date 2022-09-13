@@ -2,6 +2,7 @@ package com.eccom.store.services;
 
 import com.eccom.store.model.JwtRequest;
 import com.eccom.store.model.JwtResponse;
+import com.eccom.store.model.Role;
 import com.eccom.store.model.User;
 import com.eccom.store.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class JwtService implements UserDetailsService {
     private AuthenticationManager authenticationManager;
 
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
-        String userName = jwtRequest.getUser().getUsername();
-        String userPassword = jwtRequest.getUser().getPassword();
+        String userName = jwtRequest.getUser().getUserName();
+        String userPassword = jwtRequest.getUser().getUserPassword();
         authenticate(userName, userPassword);
 
         UserDetails userDetails = loadUserByUsername(userName);
@@ -48,8 +49,8 @@ public class JwtService implements UserDetailsService {
 
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(
-                    user.getUsername(),
-                    user.getPassword(),
+                    user.getUserName(),
+                    user.getUserPassword(),
                     getAuthority(user)
             );
         } else {
@@ -59,6 +60,7 @@ public class JwtService implements UserDetailsService {
 
     private Set getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+
         user.getRole().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
         });
