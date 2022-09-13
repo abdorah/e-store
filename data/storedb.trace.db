@@ -13,3 +13,12 @@ select item0_.item_id as item_id1_3_, item0_.availabality as availaba2_3_, item0
 2022-09-13 05:43:23 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
 select item0_.item_id as item_id1_3_, item0_.availabality as availaba2_3_, item0_.description as descript3_3_, item0_.photo_url as photo_ur4_3_ from item item0_ [42104-214]
+2022-09-13 06:24:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BORROWER" not found (this database is empty); SQL statement:
+select borrower0_.borrower_id as borrower1_0_, borrower0_.email as email2_0_, borrower0_.first_name as first_na3_0_, borrower0_.last_name as last_nam4_0_, borrower0_.password as password5_0_, borrower0_.roles as roles6_0_, borrower0_.user_name as user_nam7_0_ from borrower borrower0_ [42104-214]
+2022-09-13 06:26:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BORROWER" not found (this database is empty); SQL statement:
+select borrower0_.borrower_id as borrower1_0_0_, borrower0_.email as email2_0_0_, borrower0_.first_name as first_na3_0_0_, borrower0_.last_name as last_nam4_0_0_, borrower0_.password as password5_0_0_, borrower0_.roles as roles6_0_0_, borrower0_.user_name as user_nam7_0_0_ from borrower borrower0_ where borrower0_.borrower_id=? [42104-214]
+2022-09-13 06:58:59 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BORROWER" not found (this database is empty); SQL statement:
+select borrower0_.borrower_id as borrower1_0_, borrower0_.email as email2_0_, borrower0_.first_name as first_na3_0_, borrower0_.last_name as last_nam4_0_, borrower0_.password as password5_0_, borrower0_.user_name as user_nam6_0_ from borrower borrower0_ [42104-214]

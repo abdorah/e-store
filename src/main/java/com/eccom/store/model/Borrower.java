@@ -13,7 +13,7 @@ public class Borrower implements Serializable {
     @Id
     private Long borrowerId;
 
-    private String firstName, lastName, userName, email, password,roles;
+    private String firstName, lastName, userName, email, password;
 
     @OneToMany
     private Set<Item> itemsBorrowed, itemsReturned;
@@ -22,13 +22,7 @@ public class Borrower implements Serializable {
         return borrowerId;
     }
 
-    public String getRoles() {
-        return roles;
-    }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
 
     public String getFirstName() {
         return firstName;

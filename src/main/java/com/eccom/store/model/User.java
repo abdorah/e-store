@@ -1,19 +1,26 @@
 package com.eccom.store.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
+import java.util.Set;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
-public class User implements Serializable {
+public class User{
 
     @Id
     private Long Id;
     private String Name;
     private String LastName;
-    private String Email;
+    private String username;
     private String Password;
-
+    @ManyToMany(fetch =EAGER)
     public Long getId() {
         return Id;
     }
@@ -38,12 +45,12 @@ public class User implements Serializable {
         LastName = lastName;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmail(String username) {
+        username = username;
     }
 
     public String getPassword() {
@@ -71,16 +78,23 @@ public class User implements Serializable {
     }
 
     private String[] Roles;
+    private Set<Role> role;
     public User(){}
-    public User(Long id, String name, String lastName, String email, String password, String[] roles, String[] authorities) {
+    public User(Long id, String name, String lastName, String username, String password, String[] roles, String[] authorities) {
         Id = id;
         Name = name;
         LastName = lastName;
-        Email = email;
+        username = username;
         Password = password;
         Roles = roles;
         Authorities = authorities;
     }
+    public Set<Role> getRole() {
+        return role;
+    }
 
+    public void setRole(Set<Role> role) {
+        this.role = role;
+    }
     private String[] Authorities;
 }
