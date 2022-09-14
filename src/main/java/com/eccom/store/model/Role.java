@@ -14,7 +14,6 @@ import static javax.persistence.GenerationType.AUTO;
 public class Role {
     @Id
     private String roleName;
-    private String roleDescription;
 
     public String getRoleName() {
         return roleName;
@@ -31,4 +30,8 @@ public class Role {
     public void setRoleDescription(String roleDescription) {
         this.roleDescription = roleDescription;
     }
+
+    private String roleDescription;
+
+
 }
