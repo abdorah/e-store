@@ -4,6 +4,7 @@ import com.eccom.store.model.JwtRequest;
 import com.eccom.store.model.JwtResponse;
 import com.eccom.store.model.Role;
 import com.eccom.store.model.User;
+import com.eccom.store.repository.UserRepository;
 import com.eccom.store.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,37 +16,39 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class JwtService implements UserDetailsService {
 
     @Autowired
     private JwtUtil jwtUtil;
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
-        String userName = jwtRequest.getUser().getUserName();
-        String userPassword = jwtRequest.getUser().getUserPassword();
+        String userName = jwtRequest.getUserName();
+        String userPassword = jwtRequest.getUserPassword();
         authenticate(userName, userPassword);
 
         UserDetails userDetails = loadUserByUsername(userName);
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
 
-        User user = userService.getUsers(userName);
+        User user = userRepository.findById(userName).get();
         return new JwtResponse(user, newGeneratedToken);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      User user = userService.getUsers(username);
+      User user = userRepository.findById(username).get();
 
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(

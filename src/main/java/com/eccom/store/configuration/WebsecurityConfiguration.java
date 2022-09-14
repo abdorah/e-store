@@ -1,7 +1,7 @@
 package com.eccom.store.configuration;
 
-import com.eccom.store.model.JwtRequest;
-import com.eccom.store.services.JwtService;
+import com.eccom.store.configuration.JwtAuthenticationEntryPoint;
+import com.eccom.store.configuration.JwtRequestConfigurationfilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.Filter;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -29,7 +27,7 @@ public class WebsecurityConfiguration extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Autowired
-    private JwtRequest jwtRequest;
+    private JwtRequestConfigurationfilter jwtRequest;
 
     @Autowired
     private UserDetailsService jwtService;
@@ -44,7 +42,7 @@ public class WebsecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/registerNewUser").permitAll()
+                .authorizeRequests().antMatchers("home","/authenticate", "/registerNewUser").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -53,7 +51,7 @@ public class WebsecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         ;
 
-        httpSecurity.addFilterBefore((Filter) jwtRequest, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtRequest, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
