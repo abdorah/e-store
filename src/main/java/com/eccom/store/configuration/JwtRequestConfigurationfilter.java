@@ -42,6 +42,7 @@ public class JwtRequestConfigurationfilter extends OncePerRequestFilter {
                 System.out.println("JWT Token has expired");
             }
         } else {
+            filterChain.doFilter(request, response);
             System.out.println("JWT token does not start with Bearer");
         }
 

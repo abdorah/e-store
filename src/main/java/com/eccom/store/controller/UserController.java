@@ -42,7 +42,7 @@ public class UserController {
 //        userService.addRoletoUser(form.getUsername(), form.getRoleName());
 //        return ResponseEntity.ok().build();
 //    }
-
+      @CrossOrigin
     @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")
     public String forAdmin(){
